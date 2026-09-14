@@ -6,5 +6,6 @@
 
 ## Info
 
+In this project we were able to implement all 4 pillars of OOP Inheritance, Abstraction, Encapsulation, Polymorphism.
 This was a team effort in my 2nd semester OOP project.
 Team Members: Hassam | Bilal | Dawood
