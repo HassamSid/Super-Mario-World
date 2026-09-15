@@ -23,8 +23,6 @@ import jaco.mp3.player.MP3Player; // please install the jaco mp3 library
 class Game extends JFrame implements KeyListener, ComponentListener, ActionListener {
     boolean killCheck=true;
     
-    static String Directory = "F:\\Mario3.java"; //Please set the directory label here (the one this project is pasted in)
-    
     Level1.animationCloud a1 = new Level1.animationCloud();
     Level1.animationMob mob1 = new Level1.animationMob();
     MainMenu m1 = new MainMenu();
@@ -56,7 +54,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
         this.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
         this.setLayout(null);
         this.setTitle("Super Mario World");
-        this.setIconImage(new ImageIcon(lvl1.m1.addressMarioStandingRight).getImage());
+        this.setIconImage(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingRight)).getImage());
         this.setLocationRelativeTo(null);
         this.add(m1.panel);
         this.add(c1.panel);
@@ -71,7 +69,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
         //Reading HighScore
         Scanner read = null;
         try {
-            read = new Scanner(new File(Directory+"\\GameAssets\\Other\\HighScore.txt"));
+            read = new Scanner(new File(getClass().getResource("/GameAssets/Other/HighScore.txt").getFile()));
             highscore = Integer.parseInt(read.nextLine());
             System.out.println("high: " +highscore);
 
@@ -111,7 +109,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
             //DOWN
             case KeyEvent.VK_DOWN:
             case 83:
-                lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioDuck));
+                lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioDuck)));
                 break;
             //RIGHT
             case KeyEvent.VK_RIGHT:
@@ -137,20 +135,20 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
             case 68:
                 checkForDiagonal = 0;
                 if (jumpCount == 0) {
-                    lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingRight));
+                    lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingRight)));
                 }
                 if (jumpCount == 1 || jumpCount == 2) {
-                    lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioJumpRight));
+                    lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioJumpRight)));
                 }
                 break;
             case KeyEvent.VK_LEFT:
             case 65:
                 checkForDiagonal = 0;
-                lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingLeft));
+                lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingLeft)));
                 break;
             case KeyEvent.VK_DOWN:
             case 83:
-                lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingRight));
+                lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingRight)));
                 break;
         }
     }
@@ -198,7 +196,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
             if(killCheck==true) {
                 updateScore(lvl1.scoreDisplay, "enemy");
                 killCheck=false;
-                lvl1.g1.Goomba.setIcon(new ImageIcon(lvl1.g1.goombaPress)); //Change to stomped image
+                lvl1.g1.Goomba.setIcon(new ImageIcon(getClass().getResource(lvl1.g1.goombaPress))); //Change to stomped image
                 lvl1.g1.Sound();
 
                 //lvl1.g1.Goomba.setVisible(false); //and then remove it from the screen
@@ -275,7 +273,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
 
         //move right
         if (levelpart == 0) {
-            lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioWalkingRight));
+            lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioWalkingRight)));
             lvl1.m1.mario.setLocation(lvl1.m1.mario.getX() + 10, lvl1.m1.mario.getY());
             animationCount += 1;
         }
@@ -295,7 +293,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
 
         //If mario hasnt reached the goal post in levelpart2
         if (levelpart == 1 && lvl1.m1.mario.getX() <= 820) {
-            lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioWalkingRight));
+            lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioWalkingRight)));
             lvl1.m1.mario.setLocation(lvl1.m1.mario.getX() + 10, lvl1.m1.mario.getY());
             animationCount += 1;
         }
@@ -327,7 +325,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
 
             PrintWriter write = null;
             try {
-                write = new PrintWriter(Directory+"\\GameAssets\\Other\\HighScore.txt");
+                write = new PrintWriter("/GameAssets/Other/HighScore.txt");
                 write.println(score);
                 write.close();
             } catch (FileNotFoundException e) {
@@ -338,7 +336,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
 
     public void left() {
         checkForJump = 2;
-        lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioWalkingLeft)); //set walking image
+        lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioWalkingLeft))); //set walking image
 
         if (jumpCount == 1 || jumpCount == 2) {
             checkForDiagonal = 2;
@@ -372,11 +370,11 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
             if (checkForJump == 1) {
                 if (jumpCount < 3) { //no more than a double jump allowed
                     System.out.println(lvl1.m1.mario.getX() + "+" + lvl1.m1.mario.getY());
-                    MP3Player sfx = new MP3Player(new File(lvl1.jump_s));
+                    MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.jump_s).getFile()));
                     sfx.play();
                     try {
                         setPriority(6);
-                        lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioJumpRight));
+                        lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioJumpRight)));
 
                         //multiple loops to simulate varying gravity
                         for (int i = 0; i < 8; i++) {
@@ -407,7 +405,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
                             sleep(10);
                             lvl1.m1.mario.setLocation(lvl1.m1.mario.getX(), lvl1.m1.mario.getY() + 5);
                         }
-                        lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingRight));
+                        lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingRight)));
                     } catch (InterruptedException f) {
                         System.out.println(f);
                     }
@@ -419,11 +417,11 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
             if (checkForJump == 2) {
                 if (jumpCount < 3) {
                     System.out.println(lvl1.m1.mario.getX() + "+" + lvl1.m1.mario.getY());
-                    MP3Player sfx = new MP3Player(new File(lvl1.jump_s));
+                    MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.jump_s).getFile()));
                     sfx.play();
                     try {
                         setPriority(6);
-                        lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioJumpLeft));
+                        lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioJumpLeft)));
                         for (int i = 0; i < 8; i++) {
                             sleep(15);
                             lvl1.m1.mario.setLocation(lvl1.m1.mario.getX(), lvl1.m1.mario.getY() - 5);
@@ -452,7 +450,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
                             sleep(10);
                             lvl1.m1.mario.setLocation(lvl1.m1.mario.getX(), lvl1.m1.mario.getY() + 5);
                         }
-                        lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingLeft));
+                        lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingLeft)));
                     } catch (InterruptedException f) {
                         System.out.println(f);
                     }
@@ -467,24 +465,24 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
         public void run() {
             try {
                 if(checkForDiagonal==1) {
-                    lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioJumpRight));
+                    lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioJumpRight)));
                     for (int i = 0; i < 22; i++) {
                         System.out.println(lvl1.m1.mario.getX() + "+" + lvl1.m1.mario.getY());
                         lvl1.m1.mario.setLocation(lvl1.m1.mario.getX() + 5, lvl1.m1.mario.getY());
 
                         Thread.sleep(22);
                     }
-                    lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingRight));
+                    lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingRight)));
                 }
                 if(checkForDiagonal==2) {
-                    lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioJumpLeft));
+                    lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioJumpLeft)));
                     for (int i = 0; i < 22; i++) {
                         System.out.println(lvl1.m1.mario.getX() + "+" + lvl1.m1.mario.getY());
                         lvl1.m1.mario.setLocation(lvl1.m1.mario.getX() - 5, lvl1.m1.mario.getY());
 
                         Thread.sleep(22);
                     }
-                    lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressMarioStandingLeft));
+                    lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressMarioStandingLeft)));
                 }
 
             } catch (Exception ex) {
@@ -505,13 +503,13 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
                     sleep(4);
                     lvl1.m1.mario.setLocation(lvl1.m1.mario.getX(), lvl1.m1.mario.getY() + 1);
                 }
-                lvl1.m1.mario.setIcon(new ImageIcon(lvl1.m1.addressDMario));
+                lvl1.m1.mario.setIcon(new ImageIcon(getClass().getResource(lvl1.m1.addressDMario)));
                 for (int i = 0; i < 60; i++) {
                     sleep(4);
                     lvl1.m1.mario.setLocation(lvl1.m1.mario.getX(), lvl1.m1.mario.getY() - 2);
                 }
 
-                MP3Player sfx = new MP3Player(new File(lvl1.dead_s));
+                MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.dead_s).getFile()));
                 sfx.play();
                 sleep(300);
                 lvl1.gameOver.setVisible(true);
@@ -561,7 +559,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
                     lvl1.highScore.setVisible(true);
                 }
 
-                MP3Player sfx = new MP3Player(new File(lvl1.levelClear_s));
+                MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.levelClear_s).getFile()));
                 sfx.play();
                 //sleep(1000);
                 //readHighScore();
@@ -589,7 +587,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
                         break;
                     }
                 }
-                MP3Player sfx = new MP3Player(new File(lvl1.gameOver_s));
+                MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.gameOver_s).getFile()));
                 sfx.play();
 
                 //If our score was less than the highscore present in the text file
@@ -609,7 +607,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
         if (coin.isVisible()) {
             if (player.getX() >= coin.getX() && player.getX() <= coin.getX() + 50) {
                 if (player.getY() >= coin.getY() && player.getY() <= coin.getY() + 50) {
-                    MP3Player sfx = new MP3Player(new File(lvl1.coin_s));
+                    MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.coin_s).getFile()));
                     sfx.play();
                     return true;
                 }
@@ -667,7 +665,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
 
         if(qblock.isVisible()) {
             if (player.contains(qblock.getX() + 18, qblock.getY() + 35)) {
-                MP3Player sfx = new MP3Player(new File(lvl1.supercoin_s));
+                MP3Player sfx = new MP3Player(new File(getClass().getResource(lvl1.supercoin_s).getFile()));
                 sfx.play();
                 return true;
             }

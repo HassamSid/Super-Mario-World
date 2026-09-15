@@ -2,7 +2,7 @@ import javax.swing.*;
 
 public class Mario {
     JLabel mario;
-    public static final String imgpath = Game.Directory+"\\GameAssets\\GFX\\Mario\\";
+    public static final String imgpath ="/GameAssets/GFX/Mario/";
     String addressMarioStandingRight = imgpath + "mario.png";
     String addressMarioJumpRight = imgpath + "jump_r.png";
     String addressMarioJumpLeft = imgpath + "jump_l.png";
@@ -14,7 +14,7 @@ public class Mario {
 
     Mario(){
         mario = new JLabel();
-        mario.setIcon(new ImageIcon(addressMarioStandingRight));
+        mario.setIcon(new ImageIcon(getClass().getResource(addressMarioStandingRight)));
         mario.setBounds(0, 470, 50, 60);
         mario.setOpaque(false);
         mario.setVisible(true);

@@ -9,17 +9,17 @@ public class Level1{
     JLabel coin1, coin2, background, scoreDisplay, qblock1, qblock2,endStick,cleared,gameOver,highScore,yourScore ;
     static JLabel cloud;
     public static final int SCREEN_WIDTH = 900, SCREEN_HEIGHT = 630;
-    String imgpath = Game.Directory+"\\GameAssets\\GFX\\";
-    String Level1Img = imgpath + "Levels\\Level_1.png";
-    String Level2Img = imgpath + "Levels\\Level_2.png";
-    String CoinImg = imgpath + "Interactive\\coin.gif";
-    String CloudImg = imgpath + "Background\\clouds.png";
-    String stick = imgpath + "Blocks\\goal.png";
-    String addressCleared = imgpath + "Levels\\cleared.png";
-    String addressGameOver = imgpath + "Levels\\over.gif";
+    String imgpath ="/GameAssets/GFX/";
+    String Level1Img = imgpath + "Levels/Level_1.png";
+    String Level2Img = imgpath + "Levels/Level_2.png";
+    String CoinImg = imgpath + "Interactive/coin.gif";
+    String CloudImg = imgpath + "Background/clouds.png";
+    String stick = imgpath + "Blocks/goal.png";
+    String addressCleared = imgpath + "Levels/cleared.png";
+    String addressGameOver = imgpath + "Levels/over.gif";
     int score = 0;
     //SFX
-    public static final String sfxpath = Game.Directory+"\\GameAssets\\SFX\\";
+    public static final String sfxpath ="/GameAssets/SFX/";
     public static final String jump_s = sfxpath + "jump.mp3";
     public static final String coin_s = sfxpath + "coin.mp3";
     public static final String supercoin_s = sfxpath + "supercoin.mp3";
@@ -49,30 +49,30 @@ public class Level1{
     }
     public void yourScore(){
         cleared = new JLabel();
-        cleared.setIcon(new ImageIcon(addressCleared));
+        cleared.setIcon(new ImageIcon(getClass().getResource(addressCleared)));
         cleared.setBounds(0, -600, SCREEN_WIDTH, SCREEN_HEIGHT -30);
         cleared.setVisible(false);
     }
     public void cleared(){
         cleared = new JLabel();
-        cleared.setIcon(new ImageIcon(addressCleared));
+        cleared.setIcon(new ImageIcon(getClass().getResource(addressCleared)));
         cleared.setBounds(0, -600, SCREEN_WIDTH, SCREEN_HEIGHT -30);
         cleared.setVisible(false);
     }
     public void gameOver(){
         gameOver = new JLabel();
-        gameOver.setIcon(new ImageIcon(addressGameOver));
+        gameOver.setIcon(new ImageIcon(getClass().getResource(addressGameOver)));
         gameOver.setBounds(0, 600, SCREEN_WIDTH, SCREEN_HEIGHT -30);
         gameOver.setVisible(false);
     }
     public void Background() {
         background = new JLabel();
-        background.setIcon(new ImageIcon(Level1Img));
+        background.setIcon(new ImageIcon(getClass().getResource(Level1Img)));
         background.setBounds(0, 0, SCREEN_WIDTH * 2, SCREEN_HEIGHT - 30);
         background.setVisible(true);
     }
     public void end() {
-        endStick = new JLabel(new ImageIcon(stick));
+        endStick = new JLabel(new ImageIcon(getClass().getResource(stick)));
         endStick.setBounds(0, 0, 100, 100);
         endStick.setLocation(760, 250);
         endStick.setOpaque(false);
@@ -80,24 +80,24 @@ public class Level1{
 
     }
     public void coin() {
-        coin1 = new JLabel(new ImageIcon(CoinImg));
+        coin1 = new JLabel(new ImageIcon(getClass().getResource(CoinImg)));
         coin1.setBounds(500, 470, 50, 60);
         coin1.setOpaque(false);
         coin1.setVisible(true);
 
-        coin2 = new JLabel(new ImageIcon(CoinImg));
+        coin2 = new JLabel(new ImageIcon(getClass().getResource(CoinImg)));
         coin2.setBounds(700, 470, 50, 60);
         coin2.setOpaque(false);
         coin2.setVisible(true);
     }
 
     public void qblocks() {
-        qblock1 = new JLabel(new ImageIcon(Game.Directory+"\\GameAssets\\GFX\\Blocks\\qblock11.png"));
+        qblock1 = new JLabel(new ImageIcon(getClass().getResource("/GameAssets/GFX/Blocks/qblock11.png")));
         qblock1.setBounds(55, 385, 35, 35);
         qblock1.setOpaque(false);
         qblock1.setVisible(true);
 
-        qblock2 = new JLabel(new ImageIcon(Game.Directory+"\\GameAssets\\GFX\\Blocks\\qblock22.png"));
+        qblock2 = new JLabel(new ImageIcon(getClass().getResource("/GameAssets/GFX/Blocks/qblock22.png")));
         qblock2.setBounds(55, 385, 35, 35);
         qblock2.setOpaque(false);
         qblock2.setVisible(true);
@@ -177,13 +177,13 @@ public class Level1{
                 for (int j = 0; j < 100000; j++) {
                     for (int i = 0; i < 120; i++) {
                         sleep(70);
-                        g1.Goomba.setIcon(new ImageIcon(g1.goombaLeft));
+                        g1.Goomba.setIcon(new ImageIcon(getClass().getResource(g1.goombaLeft)));
                         g1.Goomba.setLocation(g1.Goomba.getX() - 1, g1.Goomba.getY());
                         //sleep(300);
                     }
                     for (int i = 0; i < 120; i++) {
                         sleep(70);
-                        g1.Goomba.setIcon(new ImageIcon(g1.goombaRight));
+                        g1.Goomba.setIcon(new ImageIcon(getClass().getResource(g1.goombaRight)));
                         g1.Goomba.setLocation(g1.Goomba.getX() + 1, g1.Goomba.getY());
                         //sleep(300);
                     }

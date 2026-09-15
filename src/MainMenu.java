@@ -9,10 +9,10 @@ public class MainMenu{
     JButton start,credit, exit;
 
     public static final int SCREEN_WIDTH = 900, SCREEN_HEIGHT = 600;
-    public static final String btnpath = Game.Directory+"\\GameAssets\\GFX\\Buttons\\";
+    public static final String btnpath ="/GameAssets/GFX/Buttons/";
 
-    String sfxBtn = Game.Directory+"\\GameAssets\\SFX\\bump.mp3";
-    String addressBackground = Game.Directory+"\\GameAssets\\GFX\\Mainmenu\\bg.png";
+    String sfxBtn ="/GameAssets/SFX/bump.mp3";
+    String addressBackground ="/GameAssets/GFX/Mainmenu/bg.png";
     String StartButton = btnpath + "Start1-1.png";
     String StartButtonHover = btnpath + "Start1-2.png";
     String StartButtonPress = btnpath + "Start1-3.png";
@@ -33,42 +33,42 @@ public class MainMenu{
     }
     public void Background() {
         background = new JLabel();
-        background.setIcon(new ImageIcon(addressBackground));
+        background.setIcon(new ImageIcon(getClass().getResource(addressBackground)));
         background.setBounds(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         background.setVisible(true);
 
         start = new JButton();
-        start.setIcon(new ImageIcon(StartButton));
+        start.setIcon(new ImageIcon(getClass().getResource(StartButton)));
         start.setBounds(300, 140, 300, 100);
         start.setText("Start Game");
         start.setBorder(null);
         start.setContentAreaFilled(false);
         start.setOpaque(false);
         start.setVisible(true);
-        start.setRolloverIcon(new ImageIcon(StartButtonHover));
-        start.setSelectedIcon(new ImageIcon(StartButtonPress));
+        start.setRolloverIcon(new ImageIcon(getClass().getResource(StartButtonHover)));
+        start.setSelectedIcon(new ImageIcon(getClass().getResource(StartButtonPress)));
 
         credit = new JButton();
-        credit.setIcon(new ImageIcon(CreditsButton));
+        credit.setIcon(new ImageIcon(getClass().getResource(CreditsButton)));
         credit.setBounds(300, 270, 300, 100);
         credit.setText("Credits");
         credit.setBorder(null);
         credit.setContentAreaFilled(false);
         credit.setOpaque(false);
         credit.setVisible(true);
-        credit.setRolloverIcon(new ImageIcon(CreditsButtonHover));
-        credit.setSelectedIcon(new ImageIcon(CreditsButtonPress));
+        credit.setRolloverIcon(new ImageIcon(getClass().getResource(CreditsButtonHover)));
+        credit.setSelectedIcon(new ImageIcon(getClass().getResource(CreditsButtonPress)));
 
         exit = new JButton();
-        exit.setIcon(new ImageIcon(ExitButton));
+        exit.setIcon(new ImageIcon(getClass().getResource(ExitButton)));
         exit.setBounds(300, 400, 300, 100);
         exit.setText("High Score");
         exit.setBorder(null);
         exit.setContentAreaFilled(false);
         exit.setOpaque(false);
         exit.setVisible(true);
-        exit.setRolloverIcon(new ImageIcon(ExitButtonHover));
-        exit.setSelectedIcon(new ImageIcon(ExitButtonPress));
+        exit.setRolloverIcon(new ImageIcon(getClass().getResource(ExitButtonHover)));
+        exit.setSelectedIcon(new ImageIcon(getClass().getResource(ExitButtonPress)));
     }
     public void scenes() {
         layer = new JLayeredPane();
@@ -87,7 +87,7 @@ public class MainMenu{
     }
 
     public void Sound() {
-        MP3Player sfx = new MP3Player(new File(sfxBtn));
+        MP3Player sfx = new MP3Player(new File(getClass().getResource(sfxBtn).getFile()));
         sfx.play();
     }
 }
