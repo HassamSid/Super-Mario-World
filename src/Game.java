@@ -678,7 +678,7 @@ class Game extends JFrame implements KeyListener, ComponentListener, ActionListe
 
         if(entity.isVisible()){
             if(player.contains(entity.getX() + 25, entity.getY())){
-                mob1.stop();
+                mob1.interrupt();
 
                 return true;
             }
